@@ -4,9 +4,14 @@
  */
 package GUI;
 
+import DAL.DBConnection;
+import com.mysql.jdbc.Connection;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import DTO.UserLoginDTO;
+import DAL.LoginDAL;
 
 /**
  *
@@ -17,6 +22,8 @@ public class LoginGUI extends javax.swing.JFrame {
     /**
      * Creates new form LoginView
      */
+    
+    LoginDAL dalLogin = new LoginDAL();
     public LoginGUI() {
         initComponents();
         setLocationRelativeTo(null);
@@ -80,6 +87,11 @@ public class LoginGUI extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/enter.png"))); // NOI18N
         btnLogin.setText("  Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 130, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pexels-eberhard-grossgasteiger-2098427.jpg"))); // NOI18N
@@ -101,6 +113,24 @@ public class LoginGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        Connection con = (Connection) DBConnection.ConnectDb();
+        if(txtUsername.getText().equals("") || txtPassword.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            UserLoginDTO dtoUserLogin = new UserLoginDTO(txtUsername.getText(), txtPassword.getText());
+            if(dalLogin.checkPassword(dtoUserLogin))
+            {
+                JOptionPane.showMessageDialog(this, "Login success");
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Username or password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
