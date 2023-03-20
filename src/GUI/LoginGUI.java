@@ -95,6 +95,9 @@ public class LoginGUI extends javax.swing.JFrame {
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 130, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pexels-eberhard-grossgasteiger-2098427.jpg"))); // NOI18N
+        jLabel1.setDoubleBuffered(true);
+        jLabel1.setFocusCycleRoot(true);
+        jLabel1.setInheritsPopupMenu(false);
         jLabel1.setOpaque(true);
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 433));
 
@@ -126,6 +129,8 @@ public class LoginGUI extends javax.swing.JFrame {
             if(dalLogin.checkPassword(dtoUserLogin))
             {
                 JOptionPane.showMessageDialog(this, "Login success");
+                HomeGUI home = new HomeGUI();
+                this.dispose();
             }
             else
                 JOptionPane.showMessageDialog(this, "Username or password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
