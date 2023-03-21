@@ -4,8 +4,12 @@
  */
 package GUI;
 
+import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import GUI.testGUI;
+import java.awt.Container;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,7 +21,6 @@ public class HomeGUI extends javax.swing.JFrame {
      * Creates new form HomeGUI
      */
     private JPanel childPanel;
-    
     public HomeGUI() {
         initComponents();
         setLocationRelativeTo(null);
@@ -107,9 +110,14 @@ public class HomeGUI extends javax.swing.JFrame {
         jPanel1.add(btnMaintain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 170, 50));
 
         jButton3.setBackground(new java.awt.Color(192, 192, 192));
-        jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton3.setText("Home");
         jButton3.setBorderPainted(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 170, 50));
 
         jButton4.setBackground(new java.awt.Color(192, 192, 192));
@@ -136,7 +144,7 @@ public class HomeGUI extends javax.swing.JFrame {
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 170, 50));
 
         jButton8.setBackground(new java.awt.Color(192, 192, 192));
-        jButton8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton8.setText("Lập phiếu sửa chữa");
         jButton8.setBorderPainted(false);
         jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 170, 50));
@@ -211,12 +219,22 @@ public class HomeGUI extends javax.swing.JFrame {
 
     private void btnMaintainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaintainActionPerformed
         // TODO add your handling code here:
+//        VehicleMaintenanceGUI vehicle = new VehicleMaintenanceGUI();
+//        
+//        jPanel2.show();
+//        jPanel2.setOpaque(false);
+//        jPanel2.removeAll();
+          
     }//GEN-LAST:event_btnMaintainActionPerformed
 
     private void btnMaintainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMaintainMouseClicked
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnMaintainMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
