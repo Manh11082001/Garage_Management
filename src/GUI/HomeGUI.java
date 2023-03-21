@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author huynh
@@ -13,11 +16,15 @@ public class HomeGUI extends javax.swing.JFrame {
     /**
      * Creates new form HomeGUI
      */
+    private JPanel childPanel;
+    
     public HomeGUI() {
         initComponents();
         setLocationRelativeTo(null);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);  
+        this.setSize(1000, 600);
     }
 
     /**
@@ -30,30 +37,115 @@ public class HomeGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        btnMaintain = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        home = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        home = new javax.swing.JMenu();
+        home1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(32, 178, 170));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background.jpg"))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(192, 192, 192));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/maintenance.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, 80));
+
+        jPanel2.setBackground(new java.awt.Color(47, 79, 79));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 830, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
 
-        home.setText("Home");
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 830, 580));
+
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel1.setText("AUTO REPAIR");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(192, 192, 192));
+        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton1.setText("Thay đổi quy định");
+        jButton1.setBorderPainted(false);
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 170, 50));
+
+        btnMaintain.setBackground(new java.awt.Color(192, 192, 192));
+        btnMaintain.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnMaintain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/technician.png"))); // NOI18N
+        btnMaintain.setText(" Tiếp nhận bảo trì xe");
+        btnMaintain.setBorderPainted(false);
+        btnMaintain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMaintainMouseClicked(evt);
+            }
+        });
+        btnMaintain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaintainActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMaintain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 170, 50));
+
+        jButton3.setBackground(new java.awt.Color(192, 192, 192));
+        jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton3.setText("Home");
+        jButton3.setBorderPainted(false);
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 170, 50));
+
+        jButton4.setBackground(new java.awt.Color(192, 192, 192));
+        jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton4.setText("Tra cứu xe");
+        jButton4.setBorderPainted(false);
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 170, 50));
+
+        jButton5.setBackground(new java.awt.Color(192, 192, 192));
+        jButton5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton5.setText("Lập phiếu thu tiền");
+        jButton5.setBorderPainted(false);
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 170, 50));
+
+        jButton6.setBackground(new java.awt.Color(192, 192, 192));
+        jButton6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton6.setText("Lập báo cáo tháng");
+        jButton6.setBorderPainted(false);
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 170, 50));
+
+        jButton7.setBackground(new java.awt.Color(192, 192, 192));
+        jButton7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton7.setText("Lập báo cáo tháng");
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 170, 50));
+
+        jButton8.setBackground(new java.awt.Color(192, 192, 192));
+        jButton8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton8.setText("Lập phiếu sửa chữa");
+        jButton8.setBorderPainted(false);
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 170, 50));
+
+        jMenuBar1.setBackground(new java.awt.Color(105, 105, 105));
+        jMenuBar1.add(jMenu2);
+
+        home.setForeground(new java.awt.Color(255, 255, 255));
+        home.setText("Exit");
         home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 homeMouseClicked(evt);
@@ -65,7 +157,20 @@ public class HomeGUI extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(home);
-        jMenuBar1.add(jMenu2);
+
+        home1.setForeground(new java.awt.Color(255, 255, 255));
+        home1.setText("Home");
+        home1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                home1MouseClicked(evt);
+            }
+        });
+        home1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                home1ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(home1);
 
         setJMenuBar(jMenuBar1);
 
@@ -73,7 +178,9 @@ public class HomeGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,9 +196,27 @@ public class HomeGUI extends javax.swing.JFrame {
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
         // TODO add your handling code here:
+       this.dispose();
+    }//GEN-LAST:event_homeMouseClicked
+
+    private void home1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home1MouseClicked
+        // TODO add your handling code here:
         LoginGUI login = new LoginGUI();
         this.dispose();
-    }//GEN-LAST:event_homeMouseClicked
+    }//GEN-LAST:event_home1MouseClicked
+
+    private void home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_home1ActionPerformed
+
+    private void btnMaintainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaintainActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMaintainActionPerformed
+
+    private void btnMaintainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMaintainMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnMaintainMouseClicked
 
     /**
      * @param args the command line arguments
@@ -129,10 +254,21 @@ public class HomeGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMaintain;
     private javax.swing.JMenu home;
+    private javax.swing.JMenu home1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import DTO.UserLoginDTO;
 import DAL.LoginDAL;
+import java.awt.BorderLayout;
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 /**
  *
@@ -24,6 +29,13 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     
     LoginDAL dalLogin = new LoginDAL();
+    
+    // Draw Progress Bar
+    public JProgressBar progressBar ;
+    public final int MAXIMUM = 20;
+    public JPanel panel;
+    public final JDialog dialog = new JDialog();
+    
     public LoginGUI() {
         initComponents();
         setLocationRelativeTo(null);
@@ -64,12 +76,12 @@ public class LoginGUI extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/profile.png"))); // NOI18N
         jLabel2.setText(" LOGIN");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 240, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\UIT\\TH MON HK8\\NMCNPM\\GARAGE_MANAGEMENT\\src\\Images\\rsz_32378240_7942012.jpg")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.jpg"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 350, 290));
 
         jLabel5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -87,8 +99,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
         btnLogin.setBackground(new java.awt.Color(204, 204, 204));
         btnLogin.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/enter.png"))); // NOI18N
-        btnLogin.setText("  Login");
+        btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -106,7 +117,7 @@ public class LoginGUI extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(706, 0, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pexels-eberhard-grossgasteiger-2098427.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background display.jpg"))); // NOI18N
         jLabel1.setDoubleBuffered(true);
         jLabel1.setFocusCycleRoot(true);
         jLabel1.setInheritsPopupMenu(false);
@@ -128,22 +139,26 @@ public class LoginGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+
         Connection con = (Connection) DBConnection.ConnectDb();
         if(txtUsername.getText().equals("") || txtPassword.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else
-        {
+        {   
             UserLoginDTO dtoUserLogin = new UserLoginDTO(txtUsername.getText(), txtPassword.getText());
+            this.draw_ProgressBar();
             if(dalLogin.checkPassword(dtoUserLogin))
-            {
-                JOptionPane.showMessageDialog(this, "Login success");
+            {   
+                //JOptionPane.showMessageDialog(this, "Login success");
                 HomeGUI home = new HomeGUI();
+                this.dialog.dispose();
                 this.dispose();
             }
             else
                 JOptionPane.showMessageDialog(this, "Username or password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+                this.dialog.dispose();
             }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -152,6 +167,27 @@ public class LoginGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //
+    public void draw_ProgressBar ()
+    {        
+        progressBar = new JProgressBar(0, MAXIMUM);
+        progressBar.setIndeterminate(true);
+
+        panel = new JPanel(new BorderLayout(5, 5));
+        panel.add(progressBar, BorderLayout.CENTER);
+        panel.setBorder(BorderFactory.createEmptyBorder(11, 11, 11, 11));
+        
+        dialog.setTitle("Loading");
+        dialog.getContentPane().add(panel);
+        dialog.setResizable(false);
+        dialog.pack();
+        dialog.setSize(50, dialog.getHeight());
+        dialog.setLocationRelativeTo(null);
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        dialog.setAlwaysOnTop(false);
+        dialog.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
