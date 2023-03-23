@@ -32,7 +32,7 @@ public class HomeGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         //setExtendedState(JFrame.MAXIMIZED_BOTH);  
-        this.setSize(1000, 800);
+        this.setSize(1000, 620);
         userDTO = user;
         lbName.setText(user.getUsername());
     }
