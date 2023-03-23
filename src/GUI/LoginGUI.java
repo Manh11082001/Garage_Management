@@ -29,6 +29,8 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     
     LoginDAL dalLogin = new LoginDAL();
+    // Global
+    public final static String global_processing = "Đang xử lý..." ;
     
     // Draw Progress Bar
     public JProgressBar progressBar ;
@@ -76,7 +78,7 @@ public class LoginGUI extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/profile.png"))); // NOI18N
         jLabel2.setText(" LOGIN");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 240, -1));
@@ -84,28 +86,32 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.jpg"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 350, 290));
 
-        jLabel5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Username");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Password");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
+
+        txtUsername.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 240, -1));
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 240, -1));
 
-        btnLogin.setBackground(new java.awt.Color(204, 204, 204));
+        btnLogin.setBackground(new java.awt.Color(255, 255, 204));
         btnLogin.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        btnLogin.setText("Login");
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/login-.png"))); // NOI18N
+        btnLogin.setText(" login");
+        btnLogin.setToolTipText("");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 130, -1));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 130, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setText("x");
@@ -115,20 +121,20 @@ public class LoginGUI extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(706, 0, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background display.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background.jpg"))); // NOI18N
         jLabel1.setDoubleBuffered(true);
         jLabel1.setFocusCycleRoot(true);
         jLabel1.setInheritsPopupMenu(false);
         jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 433));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 433));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +145,7 @@ public class LoginGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
+        this.draw_ProgressBar();
         Connection con = (Connection) DBConnection.ConnectDb();
         if(txtUsername.getText().equals("") || txtPassword.getText().equals(""))
         {
@@ -148,11 +154,10 @@ public class LoginGUI extends javax.swing.JFrame {
         else
         {   
             UserLoginDTO dtoUserLogin = new UserLoginDTO(txtUsername.getText(), txtPassword.getText());
-            this.draw_ProgressBar();
             if(dalLogin.checkPassword(dtoUserLogin))
             {   
-                //JOptionPane.showMessageDialog(this, "Login success");
-                HomeGUI home = new HomeGUI();
+                JOptionPane.showMessageDialog(this, "Login success");
+                HomeGUI home = new HomeGUI(dtoUserLogin);
                 this.dialog.dispose();
                 this.dispose();
             }
@@ -177,7 +182,7 @@ public class LoginGUI extends javax.swing.JFrame {
         panel.add(progressBar, BorderLayout.CENTER);
         panel.setBorder(BorderFactory.createEmptyBorder(11, 11, 11, 11));
         
-        dialog.setTitle("Loading");
+        dialog.setTitle(this.global_processing );
         dialog.getContentPane().add(panel);
         dialog.setResizable(false);
         dialog.pack();
