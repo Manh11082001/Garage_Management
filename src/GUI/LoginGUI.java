@@ -78,7 +78,7 @@ public class LoginGUI extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/profile.png"))); // NOI18N
         jLabel2.setText(" LOGIN");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 240, -1));
@@ -101,17 +101,17 @@ public class LoginGUI extends javax.swing.JFrame {
         jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 240, -1));
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 240, -1));
 
-        btnLogin.setBackground(new java.awt.Color(255, 255, 204));
-        btnLogin.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/login-.png"))); // NOI18N
-        btnLogin.setText(" login");
+        btnLogin.setText(" Login");
         btnLogin.setToolTipText("");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 130, 40));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 120, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setText("x");
@@ -123,7 +123,7 @@ public class LoginGUI extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/homebg.jpg"))); // NOI18N
         jLabel1.setDoubleBuffered(true);
         jLabel1.setFocusCycleRoot(true);
         jLabel1.setInheritsPopupMenu(false);
