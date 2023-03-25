@@ -5,6 +5,8 @@
 package GUI;
 
 import DTO.UserLoginDTO;
+import javax.swing.JPanel;
+import static jdk.nashorn.internal.objects.NativeRegExp.test;
 
 /**
  *
@@ -35,19 +37,31 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        Phieu = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        list = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+
+        jPanel2.setLayout(new java.awt.CardLayout());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(47, 79, 79));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Phiếu tiếp nhận xe sửa");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 6, 715, 78));
 
         btnBack.setBackground(new java.awt.Color(47, 79, 79));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/arrow-left.png"))); // NOI18N
@@ -57,6 +71,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 38, -1));
 
         btnExit.setBackground(new java.awt.Color(47, 79, 79));
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cross.png"))); // NOI18N
@@ -66,32 +81,56 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
+        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(962, 0, 38, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jLayeredPane1.setLayout(new java.awt.CardLayout());
+
+        jLabel1.setText("Phieu");
+
+        javax.swing.GroupLayout PhieuLayout = new javax.swing.GroupLayout(Phieu);
+        Phieu.setLayout(PhieuLayout);
+        PhieuLayout.setHorizontalGroup(
+            PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PhieuLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel1)
+                .addContainerGap(866, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBack)
-                            .addComponent(btnExit))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(516, 516, 516))
+        PhieuLayout.setVerticalGroup(
+            PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PhieuLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(jLabel1)
+                .addContainerGap(387, Short.MAX_VALUE))
         );
+
+        jLayeredPane1.add(Phieu, "card2");
+
+        list.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setText("list");
+        list.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+
+        jLayeredPane1.add(list, "card3");
+
+        jPanel1.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 130, 950, 500));
+        jLayeredPane1.getAccessibleContext().setAccessibleParent(jLayeredPane1);
+
+        jButton3.setText("test");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 230, 40));
+
+        jButton4.setText("phieu");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 230, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,6 +159,26 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      //  JPanel test;
+        // TODO add your handling code here:
+        switchPanels(list);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //JPanel Phieu;
+        // TODO add your handling code here:
+        switchPanels(Phieu);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    public void switchPanels(JPanel panel)
+    {
+        jLayeredPane1.removeAll();
+        jLayeredPane1.add(panel);
+        jLayeredPane1.repaint  ();
+        jLayeredPane1.revalidate();
+    
+    }
     /**
      * @param args the command line arguments
      */
@@ -156,9 +215,17 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Phieu;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel list;
     // End of variables declaration//GEN-END:variables
 }
