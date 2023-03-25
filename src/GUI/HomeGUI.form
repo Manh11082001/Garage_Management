@@ -149,7 +149,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="2" max="-2" attributes="0"/>
-                      <EmptySpace pref="485" max="32767" attributes="0"/>
+                      <EmptySpace pref="494" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -346,6 +346,9 @@
             <Property name="text" type="java.lang.String" value="Thay &#x111;&#x1ed5;i quy &#x111;&#x1ecb;nh"/>
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="550" width="180" height="50"/>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2023 at 09:56 AM
+-- Generation Time: Mar 25, 2023 at 05:06 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -39,7 +39,11 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`UserID`, `Username`, `Password`, `Role`) VALUES
-(1, 'manhhc', 'manh123', 'Admin');
+(1, 'manhhc', '123456', 'Admin'),
+(2, 'hangntt', '123456', ''),
+(3, 'khoiptx', '123456', ''),
+(4, 'huongbt', '123456', ''),
+(5, 'hans', '123456', '');
 
 --
 -- Indexes for dumped tables
@@ -59,7 +63,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
