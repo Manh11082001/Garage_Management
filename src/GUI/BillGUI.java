@@ -109,6 +109,17 @@ public class BillGUI extends javax.swing.JFrame {
             }
         });
 
+        textField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField2ActionPerformed(evt);
+            }
+        });
+        textField2.addTextListener(new java.awt.event.TextListener() {
+            public void textValueChanged(java.awt.event.TextEvent evt) {
+                textField2TextValueChanged(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -138,6 +149,11 @@ public class BillGUI extends javax.swing.JFrame {
         });
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnSua.setText("Sửa");
 
@@ -298,8 +314,21 @@ public class BillGUI extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
             JOptionPane.showMessageDialog(this, "Đã thêm mới một phiếu thu");
-            JOptionPane.showConfirmDialog(this, "000000000000");
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+            JOptionPane.showConfirmDialog(this, "Bạn có chắn chắn muốn xóa không?");
+
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField2ActionPerformed
+
+    private void textField2TextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_textField2TextValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField2TextValueChanged
 
     /**
      * @param args the command line arguments
