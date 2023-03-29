@@ -5,15 +5,28 @@
 package GUI;
 
 import DTO.UserLoginDTO;
+import java.io.Serializable;
+//import static java.nio.file.Files.list;
+//import static java.rmi.Naming.list;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+//import static java.util.Collections.list;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import static jdk.nashorn.internal.objects.NativeRegExp.test;
-
+//import static jdk.nashorn.internal.objects.NativeRegExp.test;
+//
+import javax.swing.table.DefaultTableModel;
+//import model.PhieuNhap;
 /**
  *
  * @author huynh
  */
 public class VehicleMaintenanceGUI extends javax.swing.JFrame {
-
+    
+   private ArrayList<PhieuNhap> list;
+   DefaultTableModel model;
     /**
      * Creates new form VehicleMaintenanceGUI
      */
@@ -22,12 +35,23 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.setLocationRelativeTo(null);
+        list=new ArrayList<>();
+        model=(DefaultTableModel) jTable1.getModel();
         this.setVisible(true);
         dtoUserLogin = user;
         //setExtendedState(JFrame.MAXIMIZED_BOTH);  
         this.setSize(1000, 600);
     }
-
+   /* public class Swing_Tutorial
+    {
+        /**
+         * @param args 
+         */
+        /*public static void main(String[] args)
+        {
+        
+        }
+    }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,8 +80,15 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         txtDiaChi = new java.awt.TextField();
         txtNgayTiepNhan = new java.awt.TextField();
         txtSDT = new java.awt.TextField();
-        jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        txtThem = new javax.swing.JButton();
+        txtXoa = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jPanel2.setLayout(new java.awt.CardLayout());
 
@@ -94,66 +125,109 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
-        jLabel1.setText("Tên chủ xe");
+        Phieu.setBackground(new java.awt.Color(255, 250, 250));
 
-        jLabel2.setText("Hiệu xe");
+        jLabel1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel1.setText("Tên chủ xe:");
 
-        jLabel3.setText("Biển số");
+        jLabel2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel2.setText("Hiệu xe:");
 
-        jLabel5.setText("Địa chỉ");
+        jLabel3.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel3.setText("Biển số:");
 
-        jLabel6.setText("Số điên thoại");
+        jLabel5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel5.setText("Địa chỉ:");
 
-        txtTenChuXe.setText("textField1");
+        jLabel6.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel6.setText("Số điên thoại:");
+
+        txtTenChuXe.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtTenChuXe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTenChuXeActionPerformed(evt);
             }
         });
 
-        txtBienSo.setText("textField1");
+        txtBienSo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtBienSo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBienSoActionPerformed(evt);
             }
         });
 
-        txtHieuXe.setText("textField1");
+        txtHieuXe.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtHieuXe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHieuXeActionPerformed(evt);
             }
         });
 
-        txtDiaChi.setText("textField1");
+        txtDiaChi.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDiaChiActionPerformed(evt);
             }
         });
 
-        txtNgayTiepNhan.setText("textField1");
+        txtNgayTiepNhan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtNgayTiepNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNgayTiepNhanActionPerformed(evt);
             }
         });
 
-        txtSDT.setText("textField1");
+        txtSDT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtSDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSDTActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Import");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel8.setText("Ngày tiếp nhận:");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "STT", "Tên chủ xe", "Biển số", "Hiệu xe", "Địa chỉ", "SĐT", "Ngày tiếp nhận"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        txtThem.setText("Thêm");
+        txtThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtThemActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("Ngày tiếp nhận");
+        txtXoa.setText("Xóa");
+        txtXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtXoaActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setText("Tìm kiếm");
+
+        jButton1.setText("Lưu file");
+
+        jButton3.setText("Mở file");
+
+        jButton4.setText("Thoát");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PhieuLayout = new javax.swing.GroupLayout(Phieu);
         Phieu.setLayout(PhieuLayout);
@@ -162,56 +236,99 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
             .addGroup(PhieuLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel8)
-                    .addComponent(jButton1))
-                .addGap(20, 20, 20)
-                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtHieuXe, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(PhieuLayout.createSequentialGroup()
-                            .addComponent(txtTenChuXe, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(111, 111, 111)
-                            .addComponent(jLabel3)
-                            .addGap(23, 23, 23)
-                            .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtDiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNgayTiepNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 75, Short.MAX_VALUE))
+                    .addGroup(PhieuLayout.createSequentialGroup()
+                        .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(24, 24, 24)
+                        .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PhieuLayout.createSequentialGroup()
+                                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PhieuLayout.createSequentialGroup()
+                                        .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtTenChuXe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtHieuXe, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                                        .addGap(63, 63, 63)
+                                        .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(PhieuLayout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtSDT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(PhieuLayout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(55, 55, 55)
+                                                .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(PhieuLayout.createSequentialGroup()
+                                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtThem)
+                                    .addComponent(txtNgayTiepNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(152, 152, 152)
+                                .addComponent(txtXoa)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(PhieuLayout.createSequentialGroup()
+                        .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PhieuLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton3))
+                            .addGroup(PhieuLayout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jButton4)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(27, Short.MAX_VALUE))))
         );
         PhieuLayout.setVerticalGroup(
             PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PhieuLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtTenChuXe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtHieuXe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PhieuLayout.createSequentialGroup()
+                        .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(PhieuLayout.createSequentialGroup()
+                                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
+                                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PhieuLayout.createSequentialGroup()
+                                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTenChuXe, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtHieuXe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(34, 34, 34)
                         .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
-                        .addComponent(txtNgayTiepNhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(87, 87, 87))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgayTiepNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtThem)
+                    .addComponent(txtXoa))
+                .addGap(18, 18, 18)
+                .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PhieuLayout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(PhieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton3))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(Phieu, "card2");
@@ -227,7 +344,9 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -268,11 +387,59 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
 
     private void txtTenChuXeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChuXeActionPerformed
         // TODO add your handling code here:
+        // Không được bỏ trống
+       /* String TenChuXe=txtTenChuXe.getText();
+        String reg="^\\w{1}\\d{2}\\w{4}\\d{3}$";
+        if(TenChuXe.length()>0)
+        {
+            if(!TenChuXe.matches(reg))// id sai định dạng
+            {
+                JOptionPane.showMessageDialog(rootPane, "Sai định dạng, nhập lại, vd: Nguyễn Văn A");
+            }
+        } else{
+            JOptionPane.showMessageDialog(rootPane, "Ten khong duoc bo trong");
+        }*/
     }//GEN-LAST:event_txtTenChuXeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void txtThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThemActionPerformed
+        // TODO add your handling code here:
+        PhieuNhap p=new PhieuNhap();
+        p.setTenChuXe(txtTenChuXe.getText());
+        p.setSDT(txtSDT.getText());
+        p.setHieuXe(txtHieuXe.getText());
+        p.setDiaChi(txtDiaChi.getText());
+        p.setBienSo(txtBienSo.getText());
+        try
+        {
+            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
+        } catch(ParseException ex){
+            ex.printStackTrace();
+        }
+       list.add(p);
+       showResult();
+    }//GEN-LAST:event_txtThemActionPerformed
+    int i=1;
+    private void showResult() {
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       PhieuNhap p =list.get(list.size()-1);
+       model.addRow(new Object[]{
+        i++, p.getTenChuXe(), p.getBienSo(), p.getHieuXe(), p.getDiaChi(),  p.getSDT(), p.getNgayTiepNhan()
+    });
+    }
+    
+    private void txtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaActionPerformed
+        // TODO add your handling code here:
+        txtTenChuXe.setText(" ");
+        txtSDT.setText(" ");
+        txtHieuXe.setText(" ");
+        txtDiaChi.setText(" ");
+        txtNgayTiepNhan.setText(" ");
+        txtBienSo.setText(" ");
+    }//GEN-LAST:event_txtXoaActionPerformed
 
     public void switchPanels(JPanel panel)
     {
@@ -282,46 +449,133 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         jLayeredPane1.revalidate();
     
     }
+
+   
+    public class PhieuNhapView extends javax.swing.JFrame
+    {
+        private ArrayList<PhieuNhap> list;
+        DefaultTableModel model;
+        public PhieuNhapView()
+        {
+            initComponents();
+            this.setLocationRelativeTo(null);
+            list=new ArrayList<>();
+            model=(DefaultTableModel)jTable1.getModel();
+        }
+        
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
+        public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 //         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(VehicleMaintenanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(VehicleMaintenanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(VehicleMaintenanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(VehicleMaintenanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VehicleMaintenanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VehicleMaintenanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+           java.util.logging.Logger.getLogger(VehicleMaintenanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VehicleMaintenanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new VehicleMaintenanceGUI().setVisible(true);
-//            }
-//        });
-//    }
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                //new PhieuNhapView().setVisible(true);
+                }
+           });
+        }
+public class PhieuNhap implements Serializable
+{
+    private String TenChuXe, BienSo, HieuXe, DiaChi, SDT;
+    //private float ;
+    private Date NgayTiepNhan ;//dd/mm/yyy;
+    
+    public String getTenChuXe()
+    {
+        return TenChuXe;
+    }
+    
+    public void setTenChuXe(String TenChuXe)
+    {
+        this.TenChuXe=TenChuXe;
+    }
+    
+    public String getBienSo()
+    {
+        return BienSo;
+    }
+    
+    public void setBienSo(String BienSo)
+    {
+        this.BienSo=BienSo;
+    }
+    
+    public String getHieuXe()
+    {
+        return HieuXe;
+    }
+    
+    public void setHieuXe(String HieuXe)
+    {
+        this.HieuXe=HieuXe;
+    }
+    
+    public String getDiaChi()
+    {
+        return DiaChi;
+    }
+    
+    public void setDiaChi(String DiaChi)
+    {
+        this.DiaChi=DiaChi;
+    }
+    
+    public String getSDT()
+    {
+        return SDT;
+    }
+    
+    public void setSDT(String SDT)
+    {
+        this.SDT=SDT;
+    }
+   
+    public Date getNgayTiepNhan()
+    {
+        return NgayTiepNhan;
+    }
+    
 
+    public void setNgayTiepNhan (Date NgayTiepNhan) {
+        this.NgayTiepNhan = NgayTiepNhan;
+    }
+
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Phieu;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -332,6 +586,9 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private java.awt.MenuBar menuBar1;
     private java.awt.TextField txtBienSo;
     private java.awt.TextField txtDiaChi;
@@ -339,5 +596,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     private java.awt.TextField txtNgayTiepNhan;
     private java.awt.TextField txtSDT;
     private java.awt.TextField txtTenChuXe;
+    private javax.swing.JButton txtThem;
+    private javax.swing.JButton txtXoa;
     // End of variables declaration//GEN-END:variables
 }
