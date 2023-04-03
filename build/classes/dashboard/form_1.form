@@ -127,7 +127,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Total income Sold"/>
+                <Property name="text" type="java.lang.String" value="Total Income Sold"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -183,7 +183,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Total expense"/>
+                <Property name="text" type="java.lang.String" value="Total Expense"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -222,7 +222,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Total income Profit"/>
+                <Property name="text" type="java.lang.String" value="Total Income Profit"/>
               </Properties>
             </Component>
           </SubComponents>

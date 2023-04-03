@@ -51,7 +51,7 @@ public class form_1 extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Total income Sold");
+        jLabel2.setText("Total Income Sold");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -80,7 +80,7 @@ public class form_1 extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Total expense");
+        jLabel4.setText("Total Expense");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -103,7 +103,7 @@ public class form_1 extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Total income Profit");
+        jLabel5.setText("Total Income Profit");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
