@@ -8,7 +8,7 @@ import DTO.UserLoginDTO;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import GUI.testGUI;
+//import GUI.testGUI;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
@@ -292,7 +292,16 @@ public class HomeGUI extends javax.swing.JFrame {
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/import.png"))); // NOI18N
         jButton6.setText("Nhập phụ tùng");
         jButton6.setBorderPainted(false);
+<<<<<<< HEAD
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 170, 50));
+=======
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 180, 50));
+>>>>>>> main
 
         jButton9.setBackground(new java.awt.Color(255, 255, 204));
         jButton9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -351,10 +360,14 @@ public class HomeGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+=======
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> main
         );
 
         pack();
@@ -430,6 +443,7 @@ public class HomeGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+<<<<<<< HEAD
     private void jPanel2ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel2ComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel2ComponentAdded
@@ -437,6 +451,13 @@ public class HomeGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+=======
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        InssertGUI insert = new InssertGUI(userDTO);
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+>>>>>>> main
 
     /**
      * @param args the command line arguments
