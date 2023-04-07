@@ -327,7 +327,7 @@ public class BillGUI extends javax.swing.JFrame {
         txtBienSo.setText("");
         txtEmail.setText("");
         txtHoTen.setText("");
-        //txtNgayThuTien.set/*Text*/("");
+        txtNgayThuTien.setText("");
         txtSDT.setText("");
         txtThuTien.setText("");
     }
