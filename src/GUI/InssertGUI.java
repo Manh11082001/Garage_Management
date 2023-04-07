@@ -95,13 +95,13 @@ public class InssertGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtMASP = new javax.swing.JTextField();
         txtTENSP = new javax.swing.JTextField();
-        txtNgayNhap = new javax.swing.JTextField();
         txtSL = new javax.swing.JTextField();
         txtDonGia = new javax.swing.JTextField();
         txtThem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePN = new javax.swing.JTable();
         txtXoa = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -172,10 +172,37 @@ public class InssertGUI extends javax.swing.JFrame {
 
         jLabel7.setText("Số Lượng");
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 109, -1, -1));
+
+        txtMASP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMASPActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtMASP, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 12, 290, -1));
         jPanel4.add(txtTENSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 53, 696, -1));
-        jPanel4.add(txtNgayNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 12, 253, -1));
+
+        txtSL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSLActionPerformed(evt);
+            }
+        });
+        txtSL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSLKeyPressed(evt);
+            }
+        });
         jPanel4.add(txtSL, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 103, 286, -1));
+
+        txtDonGia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDonGiaActionPerformed(evt);
+            }
+        });
+        txtDonGia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDonGiaKeyPressed(evt);
+            }
+        });
         jPanel4.add(txtDonGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 103, 255, -1));
 
         txtThem.setText("Thêm");
@@ -207,6 +234,7 @@ public class InssertGUI extends javax.swing.JFrame {
             }
         });
         jPanel4.add(txtXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 260, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 850, 460));
 
@@ -318,7 +346,7 @@ public class InssertGUI extends javax.swing.JFrame {
             System.out.println("success");
             
             // Query
-            String sql = "INSERT INTO PHUTUNG (MASP, TENSP, SL,DonGia, NgayNhap) VALUES (?, ?, ?,?,?)";
+            String sql = "INSERT INTO PHUTUNG (MASP, TENSP, SL,DonGia, NgayNhap) VALUES (?, ?, ?,?)";
  
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, MASP);
@@ -377,6 +405,85 @@ public class InssertGUI extends javax.swing.JFrame {
         }    
     }//GEN-LAST:event_txtXoaActionPerformed
 
+    public class InvalidMASPException extends Exception 
+    {
+        public InvalidMASPException(String message) {
+        super("Hiệu xe chỉ được chứa ký tự chữ cái và khoảng trắng!  Độ dài phải ít hơn 10");}
+    }
+    
+    private void txtMASPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMASPActionPerformed
+        String MASP=txtMASP.getText();
+        try {
+        // validate  field
+        if (MASP.trim().length() == 0 || MASP.length() > 10 || !MASP.matches("[a-zA-Z]+")) {
+        throw new InvalidMASPException("Hiệu xe phải là chữ và có độ dài không quá 10 ký tự!");
+        }
+        } catch (InvalidMASPException e) {
+        JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        isOk = false;
+        }
+    }//GEN-LAST:event_txtMASPActionPerformed
+
+    private void txtSLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSLActionPerformed
+      
+    }//GEN-LAST:event_txtSLActionPerformed
+
+    private void txtSLKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSLKeyPressed
+        String SL=txtSL.getText();
+        int length=SL.length();
+        char c= evt.getKeyChar();
+        // check number
+        if(evt.getKeyChar()>='0'&&evt.getKeyChar()<='9')
+        {
+            if(length<20)
+            {
+                txtSL.setEditable(true);
+            }else{
+                   txtSL.setEditable(false);
+            } 
+        }else{
+        // no allow keys back space and delete for edit
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE) 
+        //Than allow editable
+           {
+               txtSL.setEditable(true);
+            }else
+            {
+            txtSL.setEditable(false);
+            }
+    }    
+    }//GEN-LAST:event_txtSLKeyPressed
+
+    private void txtDonGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDonGiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDonGiaActionPerformed
+
+    private void txtDonGiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDonGiaKeyPressed
+        String DonGia=txtDonGia.getText();
+        int length=DonGia.length();
+        char c= evt.getKeyChar();
+        // check number
+        if(evt.getKeyChar()>='0'&&evt.getKeyChar()<='9')
+        {
+            if(length<10)
+            {
+                txtDonGia.setEditable(true);
+            }else{
+                   txtDonGia.setEditable(false);
+            } 
+        }else{
+        // no allow keys back space and delete for edit
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE) 
+        //Than allow editable
+           {
+               txtDonGia.setEditable(true);
+            }else
+            {
+            txtDonGia.setEditable(false);
+            }
+    }    
+    }//GEN-LAST:event_txtDonGiaKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -412,15 +519,13 @@ public class InssertGUI extends javax.swing.JFrame {
 //        });
 //    }
 
-    public Date getNgayNhap() {
-        return NgayNhap;
-    }
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -439,7 +544,6 @@ public class InssertGUI extends javax.swing.JFrame {
     private javax.swing.JTable tablePN;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtMASP;
-    private javax.swing.JTextField txtNgayNhap;
     private javax.swing.JTextField txtSL;
     private javax.swing.JTextField txtTENSP;
     private javax.swing.JButton txtThem;
