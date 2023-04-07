@@ -3,27 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/E:/git/Garage_Management/src/GUI/BillGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/ReportGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/ManagementGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/HomeGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/VehicleMaintenanceGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/dashboard/form.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/ChangeGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/GARAGE_MANAGEMENT.java</file>
-            <file>file:/E:/git/Garage_Management/src/dashboard/form_1.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/LoginGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/DTO/UserLoginDTO.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/SearchGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/RepairGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/GUI/testGUI.java</file>
-            <file>file:/E:/git/Garage_Management/src/dashboard/Progress.java</file>
-            <file>file:/E:/git/Garage_Management/src/DTO/LoginDTO.java</file>
-=======
             <file>file:/C:/Users/ADMIN/Documents/GitHub/Garage_Management/src/GUI/InssertGUI.java</file>
             <file>file:/C:/Users/ADMIN/Documents/GitHub/Garage_Management/src/GUI/VehicleMaintenanceGUI.java</file>
->>>>>>> main
         </group>
     </open-files>
 </project-private>
