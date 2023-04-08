@@ -5,6 +5,7 @@
 package GUI;
 
 import DTO.UserLoginDTO;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -104,10 +105,20 @@ public class BillGUI extends javax.swing.JFrame {
                 txtHoTenActionPerformed(evt);
             }
         });
+        txtHoTen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHoTenKeyPressed(evt);
+            }
+        });
 
         txtSDT.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtSDTFocusLost(evt);
+            }
+        });
+        txtSDT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSDTKeyPressed(evt);
             }
         });
 
@@ -162,9 +173,6 @@ public class BillGUI extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(txtNgayThuTienLayout.createSequentialGroup()
                         .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(txtNgayThuTienLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,20 +182,23 @@ public class BillGUI extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtNgayThuTienLayout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(150, 150, 150)
+                        .addGap(43, 43, 43)
                         .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(26, 26, 26)
+                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtThuTien, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtThuTien, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(txtNgayThuTienLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(txtNgayThuTienLayout.createSequentialGroup()
                 .addGap(110, 110, 110)
@@ -203,42 +214,40 @@ public class BillGUI extends javax.swing.JFrame {
         txtNgayThuTienLayout.setVerticalGroup(
             txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                        .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(txtNgayThuTienLayout.createSequentialGroup()
+                        .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(8, 8, 8)
                         .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(jLabel2)
+                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel7)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtThuTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInhd, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnThem)
                         .addComponent(btnXoa)
                         .addComponent(btnSua)))
-                .addGap(27, 27, 27)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 48)); // NOI18N
@@ -336,6 +345,44 @@ public class BillGUI extends javax.swing.JFrame {
     private void txtSDTFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSDTFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSDTFocusLost
+
+    private void txtHoTenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)|| Character.isWhitespace(c) || Character.isISOControl(c))
+        {
+            txtHoTen.setEditable(true);
+        } else
+        {
+            txtHoTen.setEditable(false);
+        }
+    }//GEN-LAST:event_txtHoTenKeyPressed
+
+    private void txtSDTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSDTKeyPressed
+        // TODO add your handling code here:
+        String phoneNumber = txtSDT.getText();
+        int length = phoneNumber.length();
+        char c =evt.getKeyChar();
+        if (evt.getKeyChar()>='0'&& evt.getKeyChar()<='9')
+        {
+            if (length<10)
+            {
+                txtSDT.setEditable(true);
+            } else
+            {
+                txtSDT.setEditable(false);
+            }
+        } else
+        {
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE)
+            {
+                txtSDT.setEditable(true);
+            } else
+            {
+                txtSDT.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_txtSDTKeyPressed
 
     /**
      * @param args the command line arguments
