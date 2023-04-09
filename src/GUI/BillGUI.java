@@ -4,9 +4,18 @@
  */
 package GUI;
 
+import DAL.DBConnection;
 import DTO.UserLoginDTO;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +27,7 @@ public class BillGUI extends javax.swing.JFrame {
      * Creates new form RepairGUI
      */
     UserLoginDTO dtoUserLogin = null;
+    Connection conn = DBConnection.ConnectDb();
     public BillGUI(UserLoginDTO user) {
         initComponents();
         setLocationRelativeTo(null);
@@ -322,18 +332,45 @@ public class BillGUI extends javax.swing.JFrame {
     private void txtHoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenActionPerformed
         
     }//GEN-LAST:event_txtHoTenActionPerformed
-    public void resetForm(){
-        txtBienSo.setText("");
-        txtEmail.setText("");
-        txtHoTen.setText("");
-        //txtNgayThuTien.setText("");
-        txtSDT.setText("");
-        txtThuTien.setText("");
-    }
+
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-        resetForm();
-        JOptionPane.showMessageDialog(this, "Đã thêm mới một phiếu thu");
+        try {                                        
+            //Init table
+            int result = 0;
+            DefaultTableModel tbl_mod = (DefaultTableModel) jTable1.getModel();
+            tbl_mod.setRowCount(0);
+            Statement st = conn.createStatement();
+            ResultSet rs;
+            if(conn == null)
+                conn = (Connection) DBConnection.ConnectDb();
+            
+            //Insert data into table
+            //rs = st.executeQuery("SELECT * FROM `customer` WHERE 1");
+            
+            //Query
+            try {
+                rs = st.executeQuery("SELECT * FROM `receipt_v`");
+                while(rs.next()){ 
+                String tbData[]={
+                    rs.getString(1), 
+                    rs.getString(2), 
+                    rs.getString(3), 
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6)};
+                tbl_mod.addRow(tbData);
+            }
+
+            result = tbl_mod.getRowCount();
+            JOptionPane.showMessageDialog(this, "Đã thêm mới một phiếu thu");
+            } catch (SQLException ex) {
+                Logger.getLogger(BillGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            resetForm();
+        } catch (SQLException ex) {
+            Logger.getLogger(BillGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -383,7 +420,15 @@ public class BillGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtSDTKeyPressed
-
+    
+    public void resetForm(){
+        txtBienSo.setText("");
+        txtEmail.setText("");
+        txtHoTen.setText("");
+        //txtNgayThuTien.setText("");
+        txtSDT.setText("");
+        txtThuTien.setText("");
+    }
     /**
      * @param args the command line arguments
      */

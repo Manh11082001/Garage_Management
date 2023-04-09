@@ -6,7 +6,9 @@ package DAL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -19,7 +21,7 @@ public class DBConnection {
     {
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/garage_management","root","");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/garage","root","");
             return con;  
         }
         catch(Exception e)
@@ -28,6 +30,10 @@ public class DBConnection {
         }
         return null;
     }
+    
+    public PreparedStatement prepareStatement(String query)throws SQLException{
+        return null;
+    }  
      
 }
 
