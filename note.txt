@@ -1,0 +1,8 @@
+Quản lý:
+	+ Xe(BSX, KH, Tiền nợ) 
+	+ Phụ tùng
+	+ Danh sách tiền công
+	
+	
+Cài sql server để test	
+	
