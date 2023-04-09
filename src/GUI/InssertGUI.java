@@ -54,12 +54,12 @@ public class InssertGUI extends javax.swing.JFrame {
             tm = (DefaultTableModel) tablePN.getModel();
             tm.setRowCount(0);
             
-            while(res.next())
-            {
-                int i=0;
-                //Object o[]={i++, res.getString("MASP"), res.getString("TENSP"), res.getInt("SL"), res.getFloat("DonGia"),res.getDate("NgayNhap")};
-                tm.addRow(o);
-            }
+//            while(res.next())
+//            {
+//                int i=0;
+//                //Object o[]={i++, res.getString("MASP"), res.getString("TENSP"), res.getInt("SL"), res.getFloat("DonGia"),res.getDate("NgayNhap")};
+//                tm.addRow(o);
+//            }
         }
         catch(Exception e){
              System.out.println(e);
@@ -348,20 +348,20 @@ public class InssertGUI extends javax.swing.JFrame {
             // Query
             //String sql = "INSERT INTO PHUTUNG (MASP, TENSP, SL,DonGia, NgayNhap) VALUES (?, ?, ?,?)";
  
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setString(1, MASP);
-            statement.setString(2, TENSP);
-            statement.setInt(3, SL);
-            statement.setFloat(4, DonGia);
+//            PreparedStatement statement = con.prepareStatement(sql);
+//            statement.setString(1, MASP);
+//            statement.setString(2, TENSP);
+//            statement.setInt(3, SL);
+//            statement.setFloat(4, DonGia);
             //Edit lai theo jdatechooser
             //statement.setString(5, NgayNhap);
-            int rowsInserted = statement.executeUpdate();
-            if (rowsInserted > 0) {
-                JOptionPane.showMessageDialog(this, "Them Thanh Cong!");
-            }
-            
-            // call view method to show table
-            view();
+//            int rowsInserted = statement.executeUpdate();
+//            if (rowsInserted > 0) {
+//                JOptionPane.showMessageDialog(this, "Them Thanh Cong!");
+//            }
+//            
+//            // call view method to show table
+//            view();
         }
         catch(Exception e){
            System.out.println(e);
@@ -420,7 +420,7 @@ public class InssertGUI extends javax.swing.JFrame {
         }
         } catch (InvalidMASPException e) {
         JOptionPane.showMessageDialog(rootPane, e.getMessage());
-        isOk = false;
+        //isOk = false;
         }
     }//GEN-LAST:event_txtMASPActionPerformed
 
@@ -443,14 +443,14 @@ public class InssertGUI extends javax.swing.JFrame {
             } 
         }else{
         // no allow keys back space and delete for edit
-           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE) 
-        //Than allow editable
-           {
-               txtSL.setEditable(true);
-            }else
-            {
-            txtSL.setEditable(false);
-            }
+//           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE) 
+//        //Than allow editable
+//           {
+//               txtSL.setEditable(true);
+//            }else
+//            {
+//            txtSL.setEditable(false);
+//            }
     }    
     }//GEN-LAST:event_txtSLKeyPressed
 
@@ -473,14 +473,14 @@ public class InssertGUI extends javax.swing.JFrame {
             } 
         }else{
         // no allow keys back space and delete for edit
-           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE) 
-        //Than allow editable
-           {
-               txtDonGia.setEditable(true);
-            }else
-            {
-            txtDonGia.setEditable(false);
-            }
+//           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE) 
+//        //Than allow editable
+//           {
+//               txtDonGia.setEditable(true);
+//            }else
+//            {
+//            txtDonGia.setEditable(false);
+//            }
     }    
     }//GEN-LAST:event_txtDonGiaKeyPressed
 

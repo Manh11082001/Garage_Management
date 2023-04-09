@@ -4,8 +4,18 @@
  */
 package GUI;
 
+import DAL.DBConnection;
 import DTO.UserLoginDTO;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +27,7 @@ public class BillGUI extends javax.swing.JFrame {
      * Creates new form RepairGUI
      */
     UserLoginDTO dtoUserLogin = null;
+    Connection conn = DBConnection.ConnectDb();
     public BillGUI(UserLoginDTO user) {
         initComponents();
         setLocationRelativeTo(null);
@@ -104,10 +115,20 @@ public class BillGUI extends javax.swing.JFrame {
                 txtHoTenActionPerformed(evt);
             }
         });
+        txtHoTen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHoTenKeyPressed(evt);
+            }
+        });
 
         txtSDT.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtSDTFocusLost(evt);
+            }
+        });
+        txtSDT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSDTKeyPressed(evt);
             }
         });
 
@@ -162,27 +183,32 @@ public class BillGUI extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(150, 150, 150)
-                        .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtThuTien, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtNgayThuTienLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(43, 43, 43)
+                        .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(txtNgayThuTienLayout.createSequentialGroup()
+                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(26, 26, 26)
+                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(txtNgayThuTienLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtThuTien, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(txtNgayThuTienLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(txtNgayThuTienLayout.createSequentialGroup()
                 .addGap(110, 110, 110)
@@ -191,8 +217,6 @@ public class BillGUI extends javax.swing.JFrame {
                 .addComponent(btnXoa)
                 .addGap(18, 18, 18)
                 .addComponent(btnSua)
-                .addGap(18, 18, 18)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInhd)
                 .addGap(199, 199, 199))
@@ -200,43 +224,40 @@ public class BillGUI extends javax.swing.JFrame {
         txtNgayThuTienLayout.setVerticalGroup(
             txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                        .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBienSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(txtNgayThuTienLayout.createSequentialGroup()
+                        .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(8, 8, 8)
                         .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtThuTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel2)
+                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(txtNgayThuTienLayout.createSequentialGroup()
-                        .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnInhd, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnThem)
-                                .addComponent(btnXoa)
-                                .addComponent(btnSua)))
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtThuTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnInhd, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(txtNgayThuTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnThem)
+                        .addComponent(btnXoa)
+                        .addComponent(btnSua)))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 48)); // NOI18N
@@ -311,18 +332,45 @@ public class BillGUI extends javax.swing.JFrame {
     private void txtHoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenActionPerformed
         
     }//GEN-LAST:event_txtHoTenActionPerformed
-    public void resetForm(){
-        txtBienSo.setText("");
-        txtEmail.setText("");
-        txtHoTen.setText("");
-        //txtNgayThuTien.setText("");
-        txtSDT.setText("");
-        txtThuTien.setText("");
-    }
+
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-        resetForm();
-        JOptionPane.showMessageDialog(this, "Đã thêm mới một phiếu thu");
+        try {                                        
+            //Init table
+            int result = 0;
+            DefaultTableModel tbl_mod = (DefaultTableModel) jTable1.getModel();
+            tbl_mod.setRowCount(0);
+            Statement st = conn.createStatement();
+            ResultSet rs;
+            if(conn == null)
+                conn = (Connection) DBConnection.ConnectDb();
+            
+            //Insert data into table
+            //rs = st.executeQuery("SELECT * FROM `customer` WHERE 1");
+            
+            //Query
+            try {
+                rs = st.executeQuery("SELECT * FROM `receipt_v`");
+                while(rs.next()){ 
+                String tbData[]={
+                    rs.getString(1), 
+                    rs.getString(2), 
+                    rs.getString(3), 
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6)};
+                tbl_mod.addRow(tbData);
+            }
+
+            result = tbl_mod.getRowCount();
+            JOptionPane.showMessageDialog(this, "Đã thêm mới một phiếu thu");
+            } catch (SQLException ex) {
+                Logger.getLogger(BillGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            resetForm();
+        } catch (SQLException ex) {
+            Logger.getLogger(BillGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -335,6 +383,52 @@ public class BillGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSDTFocusLost
 
+    private void txtHoTenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)|| Character.isWhitespace(c) || Character.isISOControl(c))
+        {
+            txtHoTen.setEditable(true);
+        } else
+        {
+            txtHoTen.setEditable(false);
+        }
+    }//GEN-LAST:event_txtHoTenKeyPressed
+
+    private void txtSDTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSDTKeyPressed
+        // TODO add your handling code here:
+        String phoneNumber = txtSDT.getText();
+        int length = phoneNumber.length();
+        char c =evt.getKeyChar();
+        if (evt.getKeyChar()>='0'&& evt.getKeyChar()<='9')
+        {
+            if (length<10)
+            {
+                txtSDT.setEditable(true);
+            } else
+            {
+                txtSDT.setEditable(false);
+            }
+        } else
+        {
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE)
+            {
+                txtSDT.setEditable(true);
+            } else
+            {
+                txtSDT.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_txtSDTKeyPressed
+    
+    public void resetForm(){
+        txtBienSo.setText("");
+        txtEmail.setText("");
+        txtHoTen.setText("");
+        //txtNgayThuTien.setText("");
+        txtSDT.setText("");
+        txtThuTien.setText("");
+    }
     /**
      * @param args the command line arguments
      */
