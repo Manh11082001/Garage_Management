@@ -29,11 +29,11 @@ public class InssertGUI extends javax.swing.JFrame {
     String MASP, TENSP;
     int SL;
     float DonGia;
-    Date NgayNhap;
+    //Date NgayNhap;
     /**
      * Creates new form SearchGUI
      */
-    //có sẳn
+    
     UserLoginDTO dtoUserLogin = null;
     public InssertGUI(UserLoginDTO user) {
         initComponents();
@@ -57,7 +57,7 @@ public class InssertGUI extends javax.swing.JFrame {
             while(res.next())
             {
                 int i=0;
-                Object o[]={i++, res.getString("MASP"), res.getString("TENSP"), res.getInt("SL"), res.getFloat("DonGia"),res.getDate("NgayNhap")};
+                //Object o[]={i++, res.getString("MASP"), res.getString("TENSP"), res.getInt("SL"), res.getFloat("DonGia"),res.getDate("NgayNhap")};
                 tm.addRow(o);
             }
         }
@@ -340,13 +340,13 @@ public class InssertGUI extends javax.swing.JFrame {
         TENSP=txtTENSP.getText();    
         SL=txtSL.getX();
         DonGia=txtDonGia.getAlignmentX();
-        String NgayNhap=txtNgayNhap.getText();
+        //String NgayNhap=txtNgayNhap.getText();
          try{
             //con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useSSL=false","","");
             System.out.println("success");
             
             // Query
-            String sql = "INSERT INTO PHUTUNG (MASP, TENSP, SL,DonGia, NgayNhap) VALUES (?, ?, ?,?)";
+            //String sql = "INSERT INTO PHUTUNG (MASP, TENSP, SL,DonGia, NgayNhap) VALUES (?, ?, ?,?)";
  
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, MASP);
@@ -354,7 +354,7 @@ public class InssertGUI extends javax.swing.JFrame {
             statement.setInt(3, SL);
             statement.setFloat(4, DonGia);
             //Edit lai theo jdatechooser
-            statement.setString(5, NgayNhap);
+            //statement.setString(5, NgayNhap);
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 JOptionPane.showMessageDialog(this, "Them Thanh Cong!");
@@ -380,20 +380,20 @@ public class InssertGUI extends javax.swing.JFrame {
         TENSP=txtTENSP.getText();
         SL=txtSL.getX();
         DonGia=txtDonGia.getAlignmentX();
-        String NgayNhap=txtNgayNhap.getText();
+        //String NgayNhap=txtNgayNhap.getText();
          try{
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useSSL=false","","");
             System.out.println("success");
             
             // Query
-            String sql = "Nhập mã sản phẩm muốn xóa";
+            String sql = "Nhp m sn phm mun xa";
  
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, MASP);
  
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
-                System.out.println("Xóa Thành Công!");
+                System.out.println("Xa Thnh Cng!");
             }
             
             // call view method to show table

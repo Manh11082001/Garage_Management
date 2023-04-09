@@ -7,19 +7,13 @@ import DTO.TiepNhan;
 import DTO.PhuTung;
 import DTO.UserLoginDTO;
 import java.util.Date;
-//import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-//import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-//import GUI.View;
-//import java.sql.Driver;
 import java.util.List;
 import controller.ControllerImp;
-//import java.awt.Frame;
 import java.awt.event.KeyEvent;
-//import controller.Controller;
 public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     boolean isOk = true;
    private ArrayList<TiepNhan> listTN;
@@ -283,42 +277,11 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void textUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUpdateActionPerformed
-    /*
-    try{
-        TiepNhan p=new TiepNhan();
-        p.setTenChuXe( txtTenChuXe.getText());
-        p.setSDT(txtSDT.getText());
-        p.setHieuXe(txtHieuXe.getText());
-        p.setDiaChi(txtDiaChi.getText());
-        p.setBienSo(txtBienSo.getText());
-        
-        try
-        {
-            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            JOptionPane.showMessageDialog(null, "Đã hoàn thành công việc");
-       
-            System.out.println(p.toString());
-        }
-        list.add(p);
-        showResult();// hiển thị kết quả
-       }catch (Exception ex){
-           JOptionPane.showMessageDialog(null, ex);
-       
-       }
-        */
-        
+      
     }//GEN-LAST:event_textUpdateActionPerformed
 
     private void txtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaActionPerformed
-        // TODO add your handling code here:
-       /*int TenXoa;
-       int dong;
-       dong = tableNhapPhieu.getSelectedRow();
-       TenXoa=(int)tableNhapPhieu.getValueAt(tableNhapPhieu.getSelectedColumn(), 1);
-       System.out.println(" "+TenXoa);
-       xoa(idxoa);*/
+
         
         txtBienSo.setText(" ");
         txtDiaChi.setText(" ");
@@ -330,50 +293,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtXoaActionPerformed
 
     private void txtThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThemActionPerformed
-        // TODO add your handling code here:
-       /*PhieuNhap p=new PhieuNhap();
-        p.setTenChuXe(txtTenChuXe.getText());
-        p.setSDT(txtSDT.getText());
-        p.setHieuXe(txtHieuXe.getText());
-        p.setDiaChi(txtDiaChi.getText());
-        p.setBienSo(txtBienSo.getText());
-        try
-        {
-            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            System.out.println(p.toString());
-        }
-        list.add(p);
-        showResult();
-        
-        */
-       /*txtThem.setToolTipText("Click để thêm");
-      try{
-        PhieuNhap p=new PhieuNhap();
-        p.setTenChuXe(txtTenChuXe.getText());
-        p.setSDT(txtSDT.getText());
-        p.setHieuXe(txtHieuXe.getText());
-        p.setDiaChi(txtDiaChi.getText());
-        p.setBienSo(txtBienSo.getText());
-        
-        try
-        {
-            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            JOptionPane.showMessageDialog(null, "Đã nhập thành công");
-       
-            System.out.println(p.toString());
-        }
-        list.add(p);
-        showResult();// hiển thị kết quả
-       }catch (Exception ex){
-           JOptionPane.showMessageDialog(null, ex);
-       
-       }
-      */
-      
+ 
       
       
       //
@@ -386,24 +306,8 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         
         //Init table
         DefaultTableModel tbl_mod = (DefaultTableModel) tableTN.getModel();
-        
-        /*
-        try
-        {
-            txtThem.NgayTiepNhan new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            JOptionPane.showMessageDialog(null, "Đã nhập thành công");
-       
-            System.out.println(txtThem.toString());
-        } System.out.println(txtThem.toString());
-        */
-        
-       // String distance = txtThem.getText();
-       // String station = txtThem.getText();
-        
-        
-        
+
+                    
         if(TenChuXe.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Khoảng cách không được bỏ trống!");
             isOk = false;
@@ -451,58 +355,14 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
 
 
     private void txtSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTActionPerformed
-        /*
-        if(this.isVisible())
-        {
-            String SDT=txtSDT.getText();
-        String reg="^\\d{10}$";
-        if(SDT.length()>0)
-        {
-            if(!SDT.matches(reg))// id sai định dạng
-            {
-                JOptionPane.showMessageDialog(rootPane, "Sai định dạng, nhập lại, chỉ nhận số");
-                txtSDT.requestFocus();
-            }
-        } else{
-            JOptionPane.showMessageDialog(rootPane, "Ten khong duoc bo trong");
-            txtSDT.requestFocus();
-        }
-        }
-        
-        */
+
         String SDT=txtSDT.getText();
         if (SDT.length() > 0 && !SDT.matches("\\d+")) {
         throw new IllegalArgumentException("Số điện thoại chỉ có thể là số!");
 }
     }//GEN-LAST:event_txtSDTActionPerformed
 
-    /*
-    public class testNgayTiepNhan
-    {
 
-       /**
-        *
-        * @param chuoi
-        * @param mau
-        * @return
-        * @throws Exception
-        */  /*
-       public static Date parse(String chuoi, String mau) throws Exception
-       {
-           try
-           {
-               SimpleDateFormat SimpleDateFormat = new SimpleDateFormat();
-               format.applyPattern(mau);
-               Date d=fomat.parse(chuoi);
-               return d;
-           }
-           catch(Exception e)
-           {
-               throw new Exception();
-           }
-       }
-    }
-*/
     
     public class InvalidDiaChiException extends Exception 
         {
@@ -598,40 +458,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     
     
     private void txtXoaDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaDongActionPerformed
-        // TODO add your handling code here:
-       /*
-         String BienSo=txtBienSo.getText();
-        String DiaCh=txtDiaChi.getText();
-        String HieuXe=txtHieuXe.getText();
-        String NgayTiepNhan=txtNgayTiepNhan.getText();
-        String SDT=txtSDT.getText();
-        String TenChuXe=txtTenChuXe.getText();
-        try{
-        TiepNhan p=new TiepNhan();
-        p.setTenChuXe(txtTenChuXe.getText());
-        p.setSDT(txtSDT.getText());
-        p.setHieuXe(txtHieuXe.getText());
-        p.setDiaChi(txtDiaChi.getText());
-        p.setBienSo(txtBienSo.getText());
-        
-        try
-        {
-            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            JOptionPane.showMessageDialog(null, "Đã nhập thành công");
-       
-            System.out.println(p.toString());
-        }
-        list.add(p);
-        showData();// hiển thị kết quả
-        
-        }catch(Exception e){
-            System.out.println("Chèn thành công");
-        }
-        
-        */
-        
+
     }//GEN-LAST:event_txtXoaDongActionPerformed
 
     private void tableTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTNMouseClicked
@@ -674,19 +501,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
 
     }
     
-    
-/*
-           public void switchPanels(JPanel panel)
-    {
-        jLayeredPane1.removeAll();
-        jLayeredPane1.add(panel);
-        jLayeredPane1.repaint  ();
-        jLayeredPane1.revalidate();
-    
-    }
-        
-        */
-// lấy dữ liệu từ bảng
+   
 
 
    
@@ -756,11 +571,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         listTN = new ArrayList<>();
         modelTN = (DefaultTableModel) tableTN.getModel();
         controller = new ControllerImp();
-        //listPT = new ArrayList<>();
-        //modelPT = (DefaultTableModel) tablePN.getModel();
-        //listManager = new ArrayList<>();
-        //modelManager = (DefaultTableModel) tblManager.getModel();
-        //modelStat = (DefaultTableModel) tblStat.getModel();
+
         showTN();
     }
     
