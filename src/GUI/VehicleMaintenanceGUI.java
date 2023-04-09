@@ -7,20 +7,15 @@ import DTO.TiepNhan;
 import DTO.PhuTung;
 import DTO.UserLoginDTO;
 import java.util.Date;
-//import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-//import GUI.View;
-//import java.sql.Driver;
 import java.util.List;
 import controller.ControllerImp;
-import java.awt.Frame;
-//import controller.Controller;
+import java.awt.event.KeyEvent;
 public class VehicleMaintenanceGUI extends javax.swing.JFrame {
-    
+    boolean isOk = true;
    private ArrayList<TiepNhan> listTN;
    
     //vị trí
@@ -35,7 +30,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.setLocationRelativeTo(null);
         listTN=new ArrayList<>();
-        DefaultTableModel model = (DefaultTableModel) tableTN.getModel();
+        DefaultTableModel modelTN = (DefaultTableModel) tableTN.getModel();
         this.setVisible(true);
         dtoUserLogin = user;
         this.setSize(1000, 600);
@@ -69,7 +64,6 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         txtBienSo = new java.awt.TextField();
         txtHieuXe = new java.awt.TextField();
         txtDiaChi = new java.awt.TextField();
-        txtNgayTiepNhan = new java.awt.TextField();
         txtSDT = new java.awt.TextField();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -79,6 +73,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         txtXoaDong = new javax.swing.JButton();
         textUpdate = new javax.swing.JButton();
+        jDate = new com.toedter.calendar.JDateChooser();
 
         jPanel2.setLayout(new java.awt.CardLayout());
 
@@ -146,7 +141,12 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
                 txtTenChuXeActionPerformed(evt);
             }
         });
-        Phieu.add(txtTenChuXe, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 18, 262, 28));
+        txtTenChuXe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTenChuXeKeyPressed(evt);
+            }
+        });
+        Phieu.add(txtTenChuXe, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 16, 262, 30));
 
         txtBienSo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtBienSo.addActionListener(new java.awt.event.ActionListener() {
@@ -172,18 +172,15 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         });
         Phieu.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 139, 715, 28));
 
-        txtNgayTiepNhan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtNgayTiepNhan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNgayTiepNhanActionPerformed(evt);
-            }
-        });
-        Phieu.add(txtNgayTiepNhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 215, 225, 28));
-
         txtSDT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtSDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSDTActionPerformed(evt);
+            }
+        });
+        txtSDT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSDTKeyPressed(evt);
             }
         });
         Phieu.add(txtSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 77, 270, 28));
@@ -243,6 +240,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
             }
         });
         Phieu.add(textUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, -1, -1));
+        Phieu.add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 270, -1));
 
         jLayeredPane1.add(Phieu, "card2");
 
@@ -279,97 +277,23 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void textUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUpdateActionPerformed
-    /*
-    try{
-        TiepNhan p=new TiepNhan();
-        p.setTenChuXe( txtTenChuXe.getText());
-        p.setSDT(txtSDT.getText());
-        p.setHieuXe(txtHieuXe.getText());
-        p.setDiaChi(txtDiaChi.getText());
-        p.setBienSo(txtBienSo.getText());
-        
-        try
-        {
-            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            JOptionPane.showMessageDialog(null, "Đã hoàn thành công việc");
-       
-            System.out.println(p.toString());
-        }
-        list.add(p);
-        showResult();// hiển thị kết quả
-       }catch (Exception ex){
-           JOptionPane.showMessageDialog(null, ex);
-       
-       }
-        */
-        
+      
     }//GEN-LAST:event_textUpdateActionPerformed
 
     private void txtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaActionPerformed
-        // TODO add your handling code here:
-       /*int TenXoa;
-       int dong;
-       dong = tableNhapPhieu.getSelectedRow();
-       TenXoa=(int)tableNhapPhieu.getValueAt(tableNhapPhieu.getSelectedColumn(), 1);
-       System.out.println(" "+TenXoa);
-       xoa(idxoa);*/
+
         
         txtBienSo.setText(" ");
         txtDiaChi.setText(" ");
         txtHieuXe.setText(" ");
-        txtNgayTiepNhan.setText(" ");
+        //txtNgayTiepNhan.setText(" ");
         txtSDT.setText(" ");
         txtTenChuXe.setText(" ");
        
     }//GEN-LAST:event_txtXoaActionPerformed
 
     private void txtThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThemActionPerformed
-        // TODO add your handling code here:
-       /*PhieuNhap p=new PhieuNhap();
-        p.setTenChuXe(txtTenChuXe.getText());
-        p.setSDT(txtSDT.getText());
-        p.setHieuXe(txtHieuXe.getText());
-        p.setDiaChi(txtDiaChi.getText());
-        p.setBienSo(txtBienSo.getText());
-        try
-        {
-            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            System.out.println(p.toString());
-        }
-        list.add(p);
-        showResult();
-        
-        */
-       /*txtThem.setToolTipText("Click để thêm");
-      try{
-        PhieuNhap p=new PhieuNhap();
-        p.setTenChuXe(txtTenChuXe.getText());
-        p.setSDT(txtSDT.getText());
-        p.setHieuXe(txtHieuXe.getText());
-        p.setDiaChi(txtDiaChi.getText());
-        p.setBienSo(txtBienSo.getText());
-        
-        try
-        {
-            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            JOptionPane.showMessageDialog(null, "Đã nhập thành công");
-       
-            System.out.println(p.toString());
-        }
-        list.add(p);
-        showResult();// hiển thị kết quả
-       }catch (Exception ex){
-           JOptionPane.showMessageDialog(null, ex);
-       
-       }
-      */
-      
+ 
       
       
       //
@@ -382,24 +306,8 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         
         //Init table
         DefaultTableModel tbl_mod = (DefaultTableModel) tableTN.getModel();
-        
-        /*
-        try
-        {
-            txtThem.NgayTiepNhan new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            JOptionPane.showMessageDialog(null, "Đã nhập thành công");
-       
-            System.out.println(txtThem.toString());
-        } System.out.println(txtThem.toString());
-        */
-        
-       // String distance = txtThem.getText();
-       // String station = txtThem.getText();
-        
-        boolean isOk = true;
-        
+
+                    
         if(TenChuXe.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Khoảng cách không được bỏ trống!");
             isOk = false;
@@ -447,121 +355,110 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
 
 
     private void txtSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTActionPerformed
-        if(this.isVisible())
-        {
-            String SDT=txtSDT.getText();
-        String reg="^\\d{10}$";
-        if(SDT.length()>0)
-        {
-            if(!SDT.matches(reg))// id sai định dạng
-            {
-                JOptionPane.showMessageDialog(rootPane, "Sai định dạng, nhập lại, chỉ nhận số");
-                txtSDT.requestFocus();
-            }
-        } else{
-            JOptionPane.showMessageDialog(rootPane, "Ten khong duoc bo trong");
-            txtSDT.requestFocus();
-        }
-        }
+
+        String SDT=txtSDT.getText();
+        if (SDT.length() > 0 && !SDT.matches("\\d+")) {
+        throw new IllegalArgumentException("Số điện thoại chỉ có thể là số!");
+}
     }//GEN-LAST:event_txtSDTActionPerformed
 
-    private void txtNgayTiepNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgayTiepNhanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNgayTiepNhanActionPerformed
 
-    /*
-    public class testNgayTiepNhan
-    {
-
-       /**
-        *
-        * @param chuoi
-        * @param mau
-        * @return
-        * @throws Exception
-        */  /*
-       public static Date parse(String chuoi, String mau) throws Exception
-       {
-           try
-           {
-               SimpleDateFormat SimpleDateFormat = new SimpleDateFormat();
-               format.applyPattern(mau);
-               Date d=fomat.parse(chuoi);
-               return d;
-           }
-           catch(Exception e)
-           {
-               throw new Exception();
-           }
-       }
-    }
-*/
+    
+    public class InvalidDiaChiException extends Exception 
+        {
+        public InvalidDiaChiException(String message) {
+        super("Không được bỏ trống và số ký tự ít hơn 100 kí tự");}
+        }
     private void txtDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiActionPerformed
-        TiepNhan p=new TiepNhan();
-        int dc= p.getDiaChi().length();
-        if(dc<=-1||dc>400)
-            throw new ArithmeticException("Địa chỉ không hợp lệ");
-    }//GEN-LAST:event_txtDiaChiActionPerformed
 
+        String DiaChi=txtTenChuXe.getText();
+        try {
+        // validate TenChuXe field
+        if (DiaChi.trim().length() == 0 || DiaChi.length() > 30 ) {
+        throw new InvalidDiaChiException("Địa chỉ không hợp lệ!");
+        }
+        } catch (InvalidDiaChiException e) {
+        JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        isOk = false;
+        }
+    }//GEN-LAST:event_txtDiaChiActionPerformed
+    
+    
+    public class InvalidHieuXeException extends Exception 
+        {
+        public InvalidHieuXeException(String message) {
+        super("Hiệu xe chỉ được chứa ký tự chữ cái và khoảng trắng!  Độ dài phải ít hơn 30");}
+        }
     private void txtHieuXeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHieuXeActionPerformed
-        // TODO add your handling code here:
+        String HieuXe=txtHieuXe.getText();
+        try {
+        // validate TenChuXe field
+        if (HieuXe.trim().length() == 0 || HieuXe.length() > 30 || !HieuXe.matches("[a-zA-Z]+")) {
+        throw new InvalidHieuXeException("Hiệu xe phải là chữ và có độ dài không quá 30 ký tự!");
+        }
+        } catch (InvalidHieuXeException e) {
+        JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        isOk = false;
+        }
     }//GEN-LAST:event_txtHieuXeActionPerformed
 
+    
+    public class InvalidHieuXeException extends Exception 
+        {
+        public InvalidHieuXeException(String message) {
+        super("Hiệu xe chỉ được chứa ký tự chữ cái và khoảng trắng!  Độ dài phải ít hơn 30");}
+        }
+    
+    
     private void txtBienSoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBienSoActionPerformed
-        // TODO add your handling code here:
+        String BienSo=txtBienSo.getText();
+        try {
+        // validate TenChuXe field
+        if (BienSo.trim().length() == 0 || BienSo.length() > 30) {
+        throw new InvalidBienSoException("Hiệu xe phải là chữ và có độ dài không vượt quá 30 ký tự!");
+        }
+        } catch (InvalidBienSoException e) {
+        JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        isOk = false;
+        }
     }//GEN-LAST:event_txtBienSoActionPerformed
-
+    
+    /*
+        Hang
+        update 04/07
+     */
+    public class InvalidTenChuXeException extends Exception 
+        {
+        public InvalidTenChuXeException(String message) {
+        super("Tên chủ xe chỉ được chứa ký tự chữ cái và khoảng trắng");}
+        }
+    
+    
     private void txtTenChuXeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChuXeActionPerformed
-        // TODO add your handling code here:
-        // Không được bỏ trống
-        /* String TenChuXe=txtTenChuXe.getText();
-        String reg="^\\w{1}\\d{2}\\w{4}\\d{3}$";
-        if(TenChuXe.length()>0)
-        {
-            if(!TenChuXe.matches(reg))// id sai định dạng
-            {
-                JOptionPane.showMessageDialog(rootPane, "Sai định dạng, nhập lại, vd: Nguyễn Văn A");
-            }
-        } else{
-            JOptionPane.showMessageDialog(rootPane, "Ten khong duoc bo trong");
-        }*/
-    }//GEN-LAST:event_txtTenChuXeActionPerformed
-
-    private void txtXoaDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaDongActionPerformed
-        // TODO add your handling code here:
-       /*
-         String BienSo=txtBienSo.getText();
-        String DiaCh=txtDiaChi.getText();
-        String HieuXe=txtHieuXe.getText();
-        String NgayTiepNhan=txtNgayTiepNhan.getText();
-        String SDT=txtSDT.getText();
-        String TenChuXe=txtTenChuXe.getText();
-        try{
-        TiepNhan p=new TiepNhan();
-        p.setTenChuXe(txtTenChuXe.getText());
-        p.setSDT(txtSDT.getText());
-        p.setHieuXe(txtHieuXe.getText());
-        p.setDiaChi(txtDiaChi.getText());
-        p.setBienSo(txtBienSo.getText());
-        
-        try
-        {
-            p.setNgayTiepNhan((Date) new SimpleDateFormat("dd/MM/yyyy").parse(txtNgayTiepNhan.getText()));
-        } catch(Exception ex){
-            //catch(ParseException ex){
-            JOptionPane.showMessageDialog(null, "Đã nhập thành công");
-       
-            System.out.println(p.toString());
-        }
-        list.add(p);
-        showData();// hiển thị kết quả
-        
-        }catch(Exception e){
-            System.out.println("Chèn thành công");
-        }
-        
+        /*
+        Hang
+        update 04/07
         */
         
+        String TenChuXe=txtTenChuXe.getText();
+        try {
+        // validate TenChuXe field
+        if (!TenChuXe.matches("^[a-zA-Z ]+$")) {
+        throw new InvalidTenChuXeException("Tên chủ xe chỉ được chứa ký tự chữ cái và khoảng trắng!");
+        }
+
+        } catch (InvalidTenChuXeException e) {
+        JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        isOk = false;
+        }
+
+    }//GEN-LAST:event_txtTenChuXeActionPerformed
+        
+    
+    
+    
+    private void txtXoaDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaDongActionPerformed
+
     }//GEN-LAST:event_txtXoaDongActionPerformed
 
     private void tableTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTNMouseClicked
@@ -569,33 +466,43 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
       
     }//GEN-LAST:event_tableTNMouseClicked
 
-    
-    
-    
-    public void switchPanels(JPanel panel)
-    {
-        jLayeredPane1.removeAll();
-        jLayeredPane1.add(panel);
-        jLayeredPane1.repaint  ();
-        jLayeredPane1.revalidate();
-    
-    }
-// lấy dữ liệu từ bảng
-    private void Display(int current) {
-       /*
-         TiepNhan p=list.get(current);
-                //PhieuNhap p=new PhieuNhap();
-        txtBienSo.setText(p.BienSo);
-        txtDiaChi.setText(p.DiaChi);
-        txtHieuXe.setText(p.HieuXe);
-        //txtNgayTiepNhan.setText.(p.NgayTiepNhan);
-        Date d =p.NgayTiepNhan;
-        txtSDT.setText(p.SDT);
-        txtTenChuXe.setText(p.TenChuXe);
-        */
+    private void txtTenChuXeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenChuXeKeyPressed
         
         
+   
+    }//GEN-LAST:event_txtTenChuXeKeyPressed
+
+    private void txtSDTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSDTKeyPressed
+        // TODO add your handling code here:
+        
+        String SDT=txtSDT.getText();
+        int length=SDT.length();
+        char c= evt.getKeyChar();
+        // check number
+        if(evt.getKeyChar()>='0'&&evt.getKeyChar()<='9')
+        {
+            if(length<10)
+            {
+                txtSDT.setEditable(true);
+            }else{
+                   txtSDT.setEditable(false);
+            } 
+        }else{
+        // no allow keys back space and delete for edit
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE||evt.getExtendedKeyCode()==KeyEvent.VK_DELETE) 
+        //Than allow editable
+           {
+               txtSDT.setEditable(true);
+            }else
+            {
+            txtSDT.setEditable(false);
+            }
+    }//GEN-LAST:event_txtSDTKeyPressed
+
     }
+    
+   
+
 
    
     public class PhieuNhapView extends javax.swing.JFrame
@@ -664,11 +571,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
         listTN = new ArrayList<>();
         modelTN = (DefaultTableModel) tableTN.getModel();
         controller = new ControllerImp();
-        //listPT = new ArrayList<>();
-        //modelPT = (DefaultTableModel) tablePN.getModel();
-        //listManager = new ArrayList<>();
-        //modelManager = (DefaultTableModel) tblManager.getModel();
-        //modelStat = (DefaultTableModel) tblStat.getModel();
+
         showTN();
     }
     
@@ -713,6 +616,7 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -731,7 +635,6 @@ public class VehicleMaintenanceGUI extends javax.swing.JFrame {
     private java.awt.TextField txtBienSo;
     private java.awt.TextField txtDiaChi;
     private java.awt.TextField txtHieuXe;
-    private java.awt.TextField txtNgayTiepNhan;
     private java.awt.TextField txtSDT;
     private java.awt.TextField txtTenChuXe;
     private javax.swing.JButton txtThem;
